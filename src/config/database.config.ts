@@ -10,7 +10,7 @@ export const databaseConfig = (
   username: configService.get('DB_USERNAME', 'root'),
   password: configService.get('DB_PASSWORD', ''),
   database: configService.get('DB_NAME', 'tasks_db'),
-  entities: [__dirname + '/**/*.entity{.ts,.js}'],
+  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   synchronize: configService.get('NODE_ENV') !== 'production',
   logging: configService.get('NODE_ENV') === 'development',
 });

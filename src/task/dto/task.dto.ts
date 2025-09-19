@@ -3,7 +3,7 @@ import { IsNotEmpty, IsString, IsOptional, IsBoolean } from 'class-validator';
 export class CreateTaskDto {
   @IsNotEmpty({ message: 'O título é obrigatório' })
   @IsString({ message: 'O título deve ser uma string' })
-  title: string;
+  titile: string;
 
   @IsOptional()
   @IsString({ message: 'A descrição deve ser uma string' })
@@ -13,7 +13,7 @@ export class CreateTaskDto {
 export class UpdateTaskDto {
   @IsOptional()
   @IsString({ message: 'O título deve ser uma string' })
-  title?: string;
+  titile?: string;
 
   @IsOptional()
   @IsString({ message: 'A descrição deve ser uma string' })

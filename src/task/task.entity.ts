@@ -6,7 +6,7 @@ export class Task {
   id: number;
 
   @Column({ type: 'varchar', length: 255 })
-  title: string;
+  titile: string;
 
   @Column({ type: 'text', nullable: true })
   description: string;

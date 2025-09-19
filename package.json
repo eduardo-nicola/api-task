@@ -18,12 +18,11 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "typeorm-ts-node-commonjs",
-    "db:migrate": "docker exec -it tasks-api-dev npm run migration:run",
-    "db:revert": "docker exec -it tasks-api-dev npm run migration:revert",
-    "db:generate": "sh -c 'docker exec -it tasks-api-dev npx typeorm-ts-node-commonjs migration:generate src/migrations/$1 -d src/config/data-source.ts' --",
-    "migration:run": "pnpm run typeorm -- migration:run -d src/config/data-source.ts",
-    "migration:revert": "pnpm run typeorm -- migration:revert -d src/config/data-source.ts"
+    "db:migrate": "docker exec -it tasks-api-dev pnpm run migration:run",
+    "db:revert": "docker exec -it tasks-api-dev pnpm run migration:revert",
+    "db:generate": "sh -c 'docker exec -it tasks-api-dev npx typeorm-ts-node-commonjs migration:generate src/migrations/$1 -d src/config/data-source.ts'",
+    "migration:run": "npx typeorm-ts-node-commonjs migration:run -d src/config/data-source.ts",
+    "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d src/config/data-source.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

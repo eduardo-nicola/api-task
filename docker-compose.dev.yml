@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # Banco de dados MySQL para desenvolvimento
+  mysql-dev:
+    image: mysql:8.0
+    container_name: tasks-mysql-dev
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: tasks_db
+      MYSQL_USER: taskuser
+      MYSQL_PASSWORD: taskpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_dev_data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - tasks-network
+
+  # Aplicação NestJS em modo desenvolvimento
+  api-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: tasks-api-dev
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql-dev
+    networks:
+      - tasks-network
+    volumes:
+      - .:/app
+volumes:
+  mysql_dev_data:
+
+networks:
+  tasks-network:
+    driver: bridge

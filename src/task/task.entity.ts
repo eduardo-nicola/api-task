@@ -14,6 +14,9 @@ export class Task {
   @Column({ type: 'boolean', default: false })
   completed: boolean;
 
+  @Column({ type: 'varchar', length: 50, nullable: true })
+  priority: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
